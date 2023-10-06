@@ -204,171 +204,122 @@
 <section class="section" id="">
   <div class="container is-max-desktop content">
     <h2 class="title">Results</h2>
-    <p>
       <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
 
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
 
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
 </head>
 <body>
 
 <table>
-    <tr>
-        <td>
-            <table>
-                <caption>Few-shot Prompting results.</caption>
-                <tr>
-                    <th></th>
-                    <th>Prompt</th>
-                    <th>EM</th>
-                </tr>
-                <tr>
-                    <td rowspan="3">GPT-4</td>
-                    <td>IO</td>
-                    <td>37.2</td>
-                </tr>
-                <tr>
-                    <td>CoT</td>
-                    <td><b>45.0</b></td>
-                </tr>
-                <tr>
-                    <td>ReAct</td>
-                    <td>42.0</td>
-                </tr>
-                <tr>
-                    <td rowspan="3">GPT-3.5</td>
-                    <td>IO</td>
-                    <td>22.4</td>
-                </tr>
-                <tr>
-                    <td>CoT</td>
-                    <td>28.0</td>
-                </tr>
-                <tr>
-                    <td>ReAct</td>
-                    <td><b>31.4</b></td>
-                </tr>
-            </table>
-        </td>
-        <td>
-            <table>
-                <caption>Prompting vs. fine-tuning, with absolute/relative increases.</caption>
-                <tr>
-                    <th></th>
-                    <th>ReAct</th>
-                    <th>FireAct</th>
-                    <th>abs./rel. diff</th>
-                </tr>
-                <tr>
-                    <td>Llama-2-7B</td>
-                    <td>14.8</td>
-                    <td>26.2</td>
-                    <td>+11.4 / <b>77%</b></td>
-                </tr>
-                <tr>
-                    <td>Llama-2-13B</td>
-                    <td><b>21.2</b></td>
-                    <td>34.4</td>
-                    <td><b>+13.1</b> / 62%</td>
-                </tr>
-                <tr>
-                    <td>CodeLlama-7B</td>
-                    <td>17.4</td>
-                    <td>27.8</td>
-                    <td>+10.4 / 60%</td>
-                </tr>
-                <tr>
-                    <td>CodeLlama-13B</td>
-                    <td>20.8</td>
-                    <td>29.0</td>
-                    <td>+8.2 / 39%</td>
-                </tr>
-                <tr>
-                    <td>CodeLlama-34B</td>
-                    <td><b>22.2</b></td>
-                    <td>27.8</td>
-                    <td>+5.6 / 25%</td>
-                </tr>
-                <tr>
-                    <td>GPT-3.5</td>
-                    <td><b>31.4</b></td>
-                    <td><b>39.2</b></td>
-                    <td>+7.8 / 25%</td>
-                </tr>
-            </table>
-        </td>
-    </tr>
+  <tr>
+    <td>
+      <table>
+        <caption>Few-shot Prompting results.</caption>
+        <tr>
+          <th></th>
+          <th>Prompt</th>
+          <th>EM</th>
+        </tr>
+        <tr>
+          <td rowspan="3">GPT-4</td>
+          <td>IO</td>
+          <td>37.2</td>
+        </tr>
+        <tr>
+          <td>CoT</td>
+          <td><b>45.0</b></td>
+        </tr>
+        <tr>
+          <td>ReAct</td>
+          <td>42.0</td>
+        </tr>
+        <tr>
+          <td rowspan="3">GPT-3.5</td>
+          <td>IO</td>
+          <td>22.4</td>
+        </tr>
+        <tr>
+          <td>CoT</td>
+          <td>28.0</td>
+        </tr>
+        <tr>
+          <td>ReAct</td>
+          <td><b>31.4</b></td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <table>
+        <caption>Prompting vs. fine-tuning, with absolute/relative increases.</caption>
+        <tr>
+          <th></th>
+          <th>ReAct</th>
+          <th>FireAct</th>
+          <th>abs./rel. diff</th>
+        </tr>
+        <tr>
+          <td>Llama-2-7B</td>
+          <td>14.8</td>
+          <td>26.2</td>
+          <td>+11.4 / <b>77%</b></td>
+        </tr>
+        <tr>
+          <td>Llama-2-13B</td>
+          <td><b>21.2</b></td>
+          <td>34.4</td>
+          <td><b>+13.1</b> / 62%</td>
+        </tr>
+        <tr>
+          <td>CodeLlama-7B</td>
+          <td>17.4</td>
+          <td>27.8</td>
+          <td>+10.4 / 60%</td>
+        </tr>
+        <tr>
+          <td>CodeLlama-13B</td>
+          <td>20.8</td>
+          <td>29.0</td>
+          <td>+8.2 / 39%</td>
+        </tr>
+        <tr>
+          <td>CodeLlama-34B</td>
+          <td><b>22.2</b></td>
+          <td>27.8</td>
+          <td>+5.6 / 25%</td>
+        </tr>
+        <tr>
+          <td>GPT-3.5</td>
+          <td><b>31.4</b></td>
+          <td><b>39.2</b></td>
+          <td>+7.8 / 25%</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
 </table>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
-
-<table>
-    <tr>
-        <td>
-            <table>
-                <caption>Prompting results.</caption>
-                <!-- Your first table content goes here -->
-                <!-- ... -->
-            </table>
-        </td>
-        <td>
-            <table>
-                <caption>Prompting vs. fine-tuning, with absolute/relative increases.</caption>
-                <!-- Your second table content goes here -->
-                <!-- ... -->
-            </table>
-        </td>
-    </tr>
 
 <p><strong>Fine-tuning significantly improves agent performance.</strong> Fine-tuning consistently and substantially enhances HotpotQA EM scores compared to prompting alone. We observe that even weaker language models benefit significantly from fine-tuning, with Llama-2-7B showing a remarkable 77% increase. Stronger models like GPT-3.5 also see a 25% improvement, highlighting the advantages of fine-tuning across various scenarios. When comparing fine-tuned Llama-2-13B to strong prompting baselines, it outperforms all GPT-3.5 prompting methods (IO/CoT/ReAct). This suggests that fine-tuning smaller, open-source language models can outperform prompting with larger, commercial counterparts. Notably, even the strongest fine-tuned LM, GPT-3.5, outperforms GPT-4 + IO prompting but falls behind GPT-4 + CoT/ReAct prompting, indicating room for further improvement.</p>
 
 
 <p><strong>Fine-tuning also offers cost and time advantages during agent inference.</strong> Since fine-tuned LMs do not require few-shot in-context examples, their inference becomes more efficient, especially in agentic applications with iterative context accumulation. For instance, the cost comparison between fine-tuned and prompted GPT-3.5 inference shows a substantial reduction in inference time by 70% (9.0s to 2.7s per trial) and a decrease in inference cost, despite the higher expense associated with fine-tuned inference. While these costs may vary under different conditions (e.g., parallelism implementation), the benefits of having a much smaller context are evident.</p>
 
-</body>
-</html>
-
-
-</body>
-</html>
-
-    </p>
-  </div>
+</div>
 </section>
 
 
