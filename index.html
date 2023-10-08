@@ -316,8 +316,48 @@
 
 <p><strong>Fine-tuning significantly improves agent performance.</strong> Fine-tuning consistently and substantially enhances HotpotQA EM scores compared to prompting alone. We observe that even weaker language models benefit significantly from fine-tuning, with Llama-2-7B showing a remarkable 77% increase. Stronger models like GPT-3.5 also see a 25% improvement, highlighting the advantages of fine-tuning across various scenarios. When comparing fine-tuned Llama-2-13B to strong prompting baselines, it outperforms all GPT-3.5 prompting methods (IO/CoT/ReAct). This suggests that fine-tuning smaller, open-source language models can outperform prompting with larger, commercial counterparts. Notably, even the strongest fine-tuned LM, GPT-3.5, outperforms GPT-4 + IO prompting but falls behind GPT-4 + CoT/ReAct prompting, indicating room for further improvement.</p>
 
+<table>
+  <caption>Comparison of costs, robustness, and generalization for fine-tuned vs. prompted GPT-3.5.</caption>
+  <tr>
+    <th></th>
+    <th colspan="2">Cost per trial</th>
+    <th colspan="3">Obs. Robustness (EM)</th>
+    <th>Generalization</th>
+  </tr>
+  <tr>
+    <th></th>
+    <th>Money ($)</th>
+    <th>Time (s)</th>
+    <th>Normal</th>
+    <th>None</th>
+    <th>Random</th>
+    <th>Bamboogle (EM)</th>
+  </tr>
+  <tr>
+    <td>FireAct</td>
+    <td><strong>2.2 × 10<sup>-3</sup></strong></td>
+    <td><strong>2.7</strong></td>
+    <td><strong>39.2</strong></td>
+    <td><strong>33.6</strong></td>
+    <td><strong>37.2</strong></td>
+    <td><strong>44.0</strong></td>
+  </tr>
+  <tr>
+    <td>ReAct</td>
+    <td>2.6 × 10<sup>-3</sup></td>
+    <td>9.0</td>
+    <td>31.4</td>
+    <td>20.8</td>
+    <td>22.6</td>
+    <td>40.8</td>
+  </tr>
+</table>
+
 
 <p><strong>Fine-tuning also offers cost and time advantages during agent inference.</strong> Since fine-tuned LMs do not require few-shot in-context examples, their inference becomes more efficient, especially in agentic applications with iterative context accumulation. For instance, the cost comparison between fine-tuned and prompted GPT-3.5 inference shows a substantial reduction in inference time by 70% (9.0s to 2.7s per trial) and a decrease in inference cost, despite the higher expense associated with fine-tuned inference. While these costs may vary under different conditions (e.g., parallelism implementation), the benefits of having a much smaller context are evident.</p>
+<p><strong>Robustness to noisy tools.</strong> The tools or environments that language agents interact with are not always trustworthy, which has led to safety concerns like jailbreaking or prompt injection. Here we consider a simplified and harmless setup, where the search API has a probability of 0.5 to return 1) "None" or 2) a random search response (from all previous experiments and trials), and ask if language agents could still robustly answer questions. As shown in the second part of Table 3, the "None" setup turns out to be the more challenging one, which lowered <strong>ReAct</strong> EM by 33.8% and <strong>FireAct</strong> EM only by 14.2%. Interestingly, random observations hurt <strong>ReAct</strong> by a similar degree (28.0% drop), but do not hurt <strong>FireAct</strong> much (only a 5.1% drop), possibly because the fine-tuning trajectories already contain examples of noisy search queries and how GPT-4 "reacts" to such noises successfully. These initial results hint at the importance of a more diverse learning support for robustness.</p>
+<p><strong>Generalization to new tasks.</strong> The third part of the table shows EM results of fine-tuned and prompted GPT-3.5 on a test set of multi-hop questions that cannot be directly answered by searching on Google. While both fine-tuned and prompted GPT-3.5 show reasonable generalization to these questions, fine-tuning outperforms prompting, suggesting its generalization advantages. Similarly, combining few-shot prompts with fine-tuning greatly improves performance on these questions. However, fine-tuning on one QA dataset does not generalize well to other datasets with different question styles and answer formats, motivating further experiments in multi-task fine-tuning.</p>
+
 
 </div>
 </section>
