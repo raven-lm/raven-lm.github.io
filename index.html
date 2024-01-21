@@ -176,9 +176,12 @@
         <img src="static/images/raven-infeerence-pipeline.png" alt="Teaser image" class="teaser-image" width="90%">
       </div>
       <p>
-        Inspired by the success of the <a href="https://crfm.stanford.edu/2023/03/13/alpaca.html">Alpaca</a> instruction-tuning protocol we use the latest
-        instruction-tuned <a href="https://huggingface.co/meta-llama/Llama-2-13b-chat-hf">Llama 2 13B chat</a> language model and
-        fine-tune it further using the <a href="https://huggingface.co/docs/peft/conceptual_guides/lora">LoRA</a> lightweight fine-tuning
+        Inspired by the success of the <a href="https://crfm.stanford.edu/2023/03/13/alpaca.html">Alpaca</a>
+        instruction-tuning protocol we use the latest
+        instruction-tuned <a href="https://huggingface.co/meta-llama/Llama-2-13b-chat-hf">Llama 2 13B chat</a> language
+        model and
+        fine-tune it further using the <a href="https://huggingface.co/docs/peft/conceptual_guides/lora">LoRA</a>
+        lightweight fine-tuning
         approach. For training we use a set of financial and generic structured and unstructured open-domain datasets to
         obtain a tool-augmented instruction following language model for finance, which we call Raven.
       </p>
@@ -238,7 +241,126 @@
       </head>
 
       <body>
+        <table>
+          <thead>
+            <tr class="header">
+              <th style="text-align: left;"></th>
+              <th colspan="4" style="text-align: center;"><span class="smallcaps">Dataset</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="odd">
+              <td style="text-align: left;"><span>1-1</span> (lr)<span>2-5</span>
+                <span class="smallcaps">Model</span>
+              </td>
+              <td style="text-align: right;"><span class="smallcaps">OTT-QA</span></td>
+              <td style="text-align: right;"><span class="smallcaps">TAT-QA</span></td>
+              <td style="text-align: right;"><span class="smallcaps">Wiki-SQL</span></td>
+              <td style="text-align: right;"><span class="smallcaps">PhraseBank</span></td>
+            </tr>
+            <tr class="even">
+              <td style="text-align: left;"><span>1-1</span> (lr)<span>2-5</span>
+                <span class="smallcaps">GPT 3.5 (CoT)</span>
+              </td>
+              <td style="text-align: right;">5.55%</td>
+              <td style="text-align: right;">19.23%</td>
+              <td style="text-align: right;">32.07%</td>
+              <td style="text-align: right;">44.18%</td>
+            </tr>
+            <tr class="odd">
+              <td style="text-align: left;"><span class="smallcaps">GPT 3.5
+                  (5-Shot)</span></td>
+              <td style="text-align: right;">14.55%</td>
+              <td style="text-align: right;">34.06%</td>
+              <td style="text-align: right;">53.00%</td>
+              <td style="text-align: right;">70.07%</td>
+            </tr>
+            <tr class="even">
+              <td style="text-align: left;"><span class="smallcaps">+Tools</span></td>
+              <td style="text-align: right;">14.60%</td>
+              <td style="text-align: right;">46.82%</td>
+              <td style="text-align: right;">75.88%</td>
+              <td style="text-align: right;">71.73%</td>
+            </tr>
+            <tr class="odd">
+              <td style="text-align: left;"><span>1-1</span> (lr)<span>2-5</span>
+                <span class="smallcaps">Llama 2 13B chat</span>
+              </td>
+              <td style="text-align: right;">6.18%</td>
+              <td style="text-align: right;">10.91%</td>
+              <td style="text-align: right;">21.68%</td>
+              <td style="text-align: right;">66.03%</td>
+            </tr>
+            <tr class="even">
+              <td style="text-align: left;"><span class="smallcaps">+SFT</span></td>
+              <td style="text-align: right;"><strong>20.10%</strong></td>
+              <td style="text-align: right;">37.87%</td>
+              <td style="text-align: right;">74.38%</td>
+              <td style="text-align: right;">90.97%</td>
+            </tr>
+            <tr class="odd">
+              <td style="text-align: left;"><span>1-1</span> (lr)<span>2-5</span>
+                <span class="smallcaps">Raven</span>
+              </td>
+              <td style="text-align: right;">16.03%</td>
+              <td style="text-align: right;">51.35%</td>
+              <td style="text-align: right;">84.25%</td>
+              <td style="text-align: right;"><strong>91.92</strong>%</td>
+            </tr>
+            <tr class="even">
+              <td style="text-align: left;"><span class="smallcaps">+Backoff</span></td>
+              <td style="text-align: right;">16.03%</td>
+              <td style="text-align: right;"><strong>52.27%</strong></td>
+              <td style="text-align: right;"><strong>85.52%</strong></td>
+              <td style="text-align: right;">91.92%</td>
+            </tr>
+          </tbody>
+        </table>
 
+        <table>
+          <caption>Number of observations per dataset in the training, validation
+            and test sets</caption>
+          <thead>
+            <tr class="header">
+              <th style="text-align: left;">Dataset</th>
+              <th style="text-align: right;">Training</th>
+              <th style="text-align: right;">Dev</th>
+              <th style="text-align: right;">Test</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="odd">
+              <td style="text-align: left;">TAT-QA</td>
+              <td style="text-align: right;">10,477</td>
+              <td style="text-align: right;">1,162</td>
+              <td style="text-align: right;">1,278</td>
+            </tr>
+            <tr class="even">
+              <td style="text-align: left;">OTT-QA</td>
+              <td style="text-align: right;">10,273</td>
+              <td style="text-align: right;">1,115</td>
+              <td style="text-align: right;">1,247</td>
+            </tr>
+            <tr class="odd">
+              <td style="text-align: left;">Wiki-SQL</td>
+              <td style="text-align: right;">12,782</td>
+              <td style="text-align: right;">1,391</td>
+              <td style="text-align: right;">1,536</td>
+            </tr>
+            <tr class="even">
+              <td style="text-align: left;">PhraseBank</td>
+              <td style="text-align: right;">3,413</td>
+              <td style="text-align: right;">382</td>
+              <td style="text-align: right;">421</td>
+            </tr>
+            <tr class="odd">
+              <td style="text-align: left;">Total</td>
+              <td style="text-align: right;">36,945</td>
+              <td style="text-align: right;">4,050</td>
+              <td style="text-align: right;">4,482</td>
+            </tr>
+          </tbody>
+        </table>
         <table>
           <tr>
             <td>
