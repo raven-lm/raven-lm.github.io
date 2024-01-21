@@ -59,7 +59,7 @@
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
-                Adrian Theuma,
+                Adrian Theuma and
               </span>
               <span class="author-block">
                 <a href="https://eehsan.github.io" target="_blank">Ehsan Shareghi</a>
@@ -134,8 +134,21 @@
           While language model fine-tuning and tool use are both popular topics, their use in specialised domains such
           as fianance remains understudied. This study initiates the exploration of numerous benefits associated with
           fine-tuning Language
-          Models (LMs) for tool use in finance. Additionally, it raises new inquiries concerning the chanllenges of
-          using language models in finance.
+          Models (LMs) for tool use in finance. Through a series of experiments we demonstrat the feasibility of
+          extending a small scale open foundation
+          model into the financial domain. We obtain a new model,
+          Raven, by
+          leveraging Llama 2 13B chat and use a relatively small and diverse dataset to fine-tune a mere 0.2% of
+          its
+          parameters. Raven remarkably elevates the performance of the base model from 2% to 56.7% on a table and text
+          arithmetic question answering benchmark. On average, across the
+          datasets we
+          experimented with, Raven lifts average absolute performance by 35.2%
+          compared
+          to the base model, surpassing even a significantly larger GPT-3.5 model by 9.2%! Additionally, through a
+          comparative
+          analysis of question answering datasets we demonstrate the effectiveness of tool augmentation, showing
+          significant improvements in accuracy when addressing multi-hop questions.
         </h2>
       </div>
     </div>
@@ -453,10 +466,98 @@
         the above, model performance degrades with the number of operators (x-axis) and
         hence the numerical values required to be extracted from the context.
       </p>
+    </div>
+  </section>
 
+
+  <section class="section" id="example">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Limitations</h2>
+      <p>
+        <strong>Hardware bottleneck.</strong> Our experiments were constrained with fitting our model on available
+        commodity
+        hardware. We hypothesise that it would be possible to obtain better performance using the larger Llama 2 70
+        billion-parameter model and a longer context length. Experiments by~\citet{DBLP:journals/corr/abs-2307-09288}
+        demonstrated that the 70-billion-parameter model consistently achieves the highest performance across various
+        prominent natural language understanding benchmarks. Additionally, a longer context length enables
+        experimentation
+        with diverse prompts as well as alternative representations of structured data.
+      </p>
+      <p>
+        <strong>Language model evaluation.</strong> Our experimental
+        results demonstrate that evaluating natural language generation models (NLG) in a domain characterised by the
+        ubiquitous presence of numerical
+        values, such as finance, poses a significant challenge. Mainstream NLG evaluation metrics provide a measure of
+        similarity between generations which is reported in terms of surface form similarity. These measures are not
+        suitable
+        for comparing numerical content. Conversely, using exact match criteria might unjustly penalise NLG models,
+        given that
+        identical numerical values can be expressed in varying forms - such as "$4 million" and "$4,000,000," or "0.24"
+        and
+        "24%,". In some cases, numerical values can be integrated within a passage of text, rendering the evaluation of
+        such
+        content very challenging.
+      </p>
+      <p>
+        <strong>GPT-3.5 evaluation.</strong> Evaluating our benchmark with GPT-3.5 poses significant challenges,
+        particularly when using <a
+          href="https://medium.com/@JerryCuomo/lets-think-step-by-step-advanced-reasoning-in-business-with-chain-of-thought-prompting-dd5ae8a6008#:~:text=In%20chain%2Dof%2Dthought%20prompting,bite%2Dsized%2C%20logical%20chunks.">chain-of-though</a>
+        reasoning. GPT-3.5 does
+        not consistently adhere to instructions for providing a concise response, such as a single word or number, which
+        makes
+        exact match comparisons challenging. Additionally, we have noticed that GPT-3.5 does not generate a response
+        when uncertain. This is particularly evident when evaluating the PhraseBank dataset, which does not exhibit
+        common sentiment negative or positive words.
+      </p>
 
     </div>
   </section>
+
+  <section class="section" id="example">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Conclusion</h2>
+      <p>
+        Through a series of experiments we have demonstrated the feasibility of extending a small scale open foundation
+        model into the financial domain. We obtain a new model,
+        Raven, by
+        leveraging Llama 2 13B chat and use a relatively small and diverse dataset to fine-tune a mere 0.2% of
+        its
+        parameters. Raven remarkably elevates the performance of the base model from 2% to 56.7% on the
+        TAT-QA arithmetic question answering benchmark. On average, across the
+        datasets we
+        experimented with, Raven lifts average absolute performance by 35.2%
+        compared
+        to the base model, surpassing even a significantly larger GPT-3.5 model by 9.2%. Additionally, through a
+        comparative
+        analysis of question answering datasets we demonstrate the effectiveness of augmenting language models with
+        external
+        tools, showing significant improvements in accuracy when addressing multi-hop questions with tools.
+
+
+      </p>
+      <p>
+
+        <strong>Future work.</strong> The financial domain encompasses not only structured and unstructured data but
+        also the
+        pervasive presence of visual representations of data in charts. To develop a comprehensive financial language
+        model,
+        it becomes imperative to endow these models with the capability to engage in multi-modal reasoning.
+        Additionally, in our pursuit to create specialised domain AI assistants, our efforts should extend beyond
+        enhancing
+        their predictive capabilities. While it is undoubtedly crucial to push the boundaries and surpass previous
+        state-of-the-art achievements, we believe it is equally imperative to equip language models with the capacity to
+        quantify uncertainty. <em>Is it possible for a tool-augmented model to report a measure of certainty with its
+          generated result?</em> We leave multi-modality and certainty quantification for future work.
+      </p>
+
+    </div>
+  </section>
+
+
+
+
+
+
 
 
 
