@@ -128,7 +128,7 @@
     <div class="container is-max-desktop">
       <div class="hero-body">
         <div class="item has-text-centered">
-          <img src="static/images/Animation.gif" alt="Teaser image" class="teaser-image" width="120%">
+          <img src="static/images/Animation.gif" alt="Teaser image" class="teaser-image" width="100%">
         </div>
         <h2 class="subtitle has-text-centered">
           While language model fine-tuning and tool use are both popular topics, their use in specialised domains such
@@ -159,7 +159,8 @@
               LLaMA-2 13B Chat model to act both as a <em>task router</em> and <em>task solver</em>. The <em>task
                 router</em> dynamically directs a question to either be answered internally by the LLM or externally via
               the
-              right tool from the tool set.
+              right tool from the tool set. Our tool-equipped SFT model, Raven, demonstrates an improvement of
+              35.2% over the baseline, and is competitive with strong GPT-3.5 CoT and in-context learning baselines.
             </p>
           </div>
         </div>
@@ -175,15 +176,34 @@
         <img src="static/images/raven-infeerence-pipeline.png" alt="Teaser image" class="teaser-image" width="90%">
       </div>
       <p>
-        The FireAct framework includes two steps: <br>
-        (a) <strong>During the fine-tuning</strong>, a robust language model (e.g., GPT-4) generates task-solving paths
-        by analyzing questions from various datasets and employing diverse methods as prompts. These effective paths are
-        then translated into the ReAct format to fine-tune a smaller language model (e.g. Llama2-7B).
-        <br>
-        (b) <strong>During inference</strong>, the fine-tuned language model can operate without the need for explicit
-        prompts and has the capability to autonomously select an agent method, allowing it to complete ReAct
-        trajectories with adaptable lengths, thus accommodating varying levels of question complexity. The example
-        "3+4+5=" represents an ad-hoc question for illustration purposes.
+        Inspired by the success of the <strong>Alpaca</strong> instruction-tuning protocol we use the latest
+        instruction-tuned <strong>Llama 2 13B chat</strong> language model and
+        fine-tune it further using the <strong>LoRA</strong> lightweight fine-tuning
+        approach. For training we use a set of financial and generic structured and unstructured open-domain datasets to
+        obtain a tool-augmented instruction following language model for finance, which we call <strong>Raven</strong>.
+      </p>
+      <p>
+        <strong>Inference pipeline</strong>. We use different prompt templates to <em>steer</em> the tool-augmented
+        model (Raven) to either produce
+        the final answer or produce an intermediate result, which is subsequently interpreted by one of the external
+        tools.
+      </p>
+      <p>
+        <strong>Task-router.</strong> At inference time we prompt <strong>Raven</strong> twice for every query.
+        Initially we
+        wrap the prompt in a specialised <em>template choice</em> prompt and expect the model to predict the best prompt
+        template to use from <em>arithmetic</em>, <em>classification</em>, <em>script</em> or <em>information
+          extraction</em>,
+        conditioned on the input.
+      </p>
+      <p>
+        <strong>Task-solver.</strong> The instruction, including the input and data if applicable, are wrapped in the
+        prompt template that the model inferred and this is sent to <strong>Raven</strong> to generate the next output.
+        Depending on the selected template the <em>task router</em> then invokes a tool to fulfill the request, or
+        produces the response directly.
+      </p>
+
+
       </p>
     </div>
     </div>
