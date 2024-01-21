@@ -128,27 +128,27 @@
     <div class="container is-max-desktop">
       <div class="hero-body">
         <div class="item has-text-centered">
-          <img src="static/images/Animation.gif" alt="Teaser image" class="teaser-image" width="100%">
+          <img src="static/images/raven-demo.gif" alt="Raven gif animation"  width="100%">
         </div>
         <h2 class="subtitle has-text-centered">
           While language model fine-tuning and tool use are both popular topics, their use in specialised domains such
           as fianance remains understudied. This study initiates the exploration of numerous benefits associated with
           fine-tuning Language
-          Models (LMs) for tool use in finance. Through a series of experiments we demonstrat the feasibility of
+          Models (LMs) for tool use in finance. Through a series of experiments we demonstrate the feasibility of
           extending a small scale open foundation
           model into the financial domain. We obtain a new model,
           Raven, by
-          leveraging Llama 2 13B chat and use a relatively small and diverse dataset to fine-tune a mere 0.2% of
+          leveraging Llama 2 13B chat and fine-tune a mere 0.2% of
           its
-          parameters. Raven remarkably elevates the performance of the base model from 2% to 56.7% on a table and text
+          parameters.
+        </h2>
+        <h2 class="subtitle has-text-centered">
+          Raven remarkably elevates the performance of the base model from 2% to 56.7% on a table and text
           arithmetic question answering benchmark. On average, across the
           datasets we
           experimented with, Raven lifts average absolute performance by 35.2%
           compared
-          to the base model, surpassing even a significantly larger GPT-3.5 model by 9.2%! Additionally, through a
-          comparative
-          analysis of question answering datasets we demonstrate the effectiveness of tool augmentation, showing
-          significant improvements in accuracy when addressing multi-hop questions.
+          to the base model, surpassing even a significantly larger GPT-3.5 model by 9.2%!
         </h2>
       </div>
     </div>
@@ -185,12 +185,9 @@
   <section class="section" id="method">
     <div class="container is-max-desktop content">
       <h2 class="title">Method</h2>
-      <div class="item has-text-centered">
-        <img src="static/images/raven-infeerence-pipeline.png" alt="Teaser image" class="teaser-image" width="90%">
-      </div>
       <p>
         Inspired by the success of the <a href="https://crfm.stanford.edu/2023/03/13/alpaca.html">Alpaca</a>
-        instruction-tuning protocol we use the latest
+        instruction-tuning protocol we use the
         instruction-tuned <a href="https://huggingface.co/meta-llama/Llama-2-13b-chat-hf">Llama 2 13B chat</a> language
         model and
         fine-tune it further using the <a href="https://huggingface.co/docs/peft/conceptual_guides/lora">LoRA</a>
@@ -198,6 +195,10 @@
         approach. For training we use a set of financial and generic structured and unstructured open-domain datasets to
         obtain a tool-augmented instruction following language model for finance, which we call Raven.
       </p>
+      <div class="item has-text-centered">
+        <img src="static/images/raven-infeerence-pipeline.png" alt="Teaser image" class="teaser-image" width="90%">
+      </div>
+      
       <p>
         <strong>Inference pipeline</strong>. We use different prompt templates to <em>steer</em> Raven to either produce
         the final answer or produce an intermediate result, which is subsequently interpreted by one of the external
