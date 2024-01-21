@@ -331,48 +331,56 @@
 
 
         <p><strong>Fine-tuning and using tools significantly improves performance.</strong> When compared to the base
-          model Raven significantly improves the results on the PhraseBank
+          model Raven significantly improves the results on the <a
+            href="https://paperswithcode.com/sota/sentiment-analysis-on-financial-phrasebank">PhraseBank</a>
           dataset by an absolute 25.9%. These encouraging results suggest that
           even
           a limited dataset can endow a pre-trained language model with a sophisticated understanding of financial
           language, obtaining high accuracy in a financial sentiment classification benchmark.
         </p>
         <p>
-        On the <a href="https://paperswithcode.com/dataset/wikisql">Wiki-SQL</a> dataset the base model is unable to infer the correct answer almost 80% of the
-        time. This figure is inverted when the same benchmark is evaluated on Raven that obtains a
-        <em>4-fold</em>> improvement over the base model inferring the correct answer more than 85% of the time. Our model
-        improves on the best GPT-3.5 performance by close to 10% (absolute). All the questions in this dataset
-        can be addressed using the lightweight database engine and involve a combination of
-        data selection, ranking and arithmetic operations on structured data. This result underscores the distinct
-        advantage of delegating this task to a tool rather than relying on the language model to infer the results in a
-        zero-shot manner. Despite the results not being as strong as Raven we observe a similar pattern on the
-        GPT-3.5 evaluation in which better results are incrementally obtained when including examples in the
-        context and using tools compared to <a href="https://arxiv.org/abs/2205.11916">Zero-Shot-CoT</a>.
+          On the <a href="https://paperswithcode.com/dataset/wikisql">Wiki-SQL</a> dataset the base model is unable to
+          infer the correct answer almost 80% of the
+          time. This figure is inverted when the same benchmark is evaluated on Raven that obtains a
+          <em>4-fold</em>> improvement over the base model inferring the correct answer more than 85% of the time. Our
+          model
+          improves on the best GPT-3.5 performance by close to 10% (absolute). All the questions in this dataset
+          can be addressed using the lightweight database engine and involve a combination of
+          data selection, ranking and arithmetic operations on structured data. This result underscores the distinct
+          advantage of delegating this task to a tool rather than relying on the language model to infer the results in
+          a
+          zero-shot manner. Despite the results not being as strong as Raven we observe a similar pattern on the
+          GPT-3.5 evaluation in which better results are incrementally obtained when including examples in the
+          context and using tools compared to <a href="https://arxiv.org/abs/2205.11916">Zero-Shot-CoT</a>.
         </p>
         <p>
 
-        We see a similar pattern on the <a href="https://paperswithcode.com/dataset/tat-qa">TAT-QA</a> benchmark with the tool augmented model achieving a
-        <em>5-fold</em> improvement on the base model. Approximately 46% of the observations of the TAT-QA
-        dataset are annotated with an intermediate arithmetic derivation that Raven evaluates using a
-        calculator at inference time. In the analysis section we outline a comparative
-        analysis to explore whether our model performs better on this partition of the data.
+          We see a similar pattern on the <a href="https://paperswithcode.com/dataset/tat-qa">TAT-QA</a> benchmark with
+          the tool augmented model achieving a
+          <em>5-fold</em> improvement on the base model. Approximately 46% of the observations of the TAT-QA
+          dataset are annotated with an intermediate arithmetic derivation that Raven evaluates using a
+          calculator at inference time. In the analysis section we outline a comparative
+          analysis to explore whether our model performs better on this partition of the data.
         </p>
-<p>
-        The majority of questions in <a href="https://paperswithcode.com/dataset/ott-qa">OTT-QA</a> require multi-hop inference involving both tabular data and
-        unstructured text, with the information needed to answer the questions dispersed differently across these two
-        input types. The baseline model from <a href="https://arxiv.org/abs/2010.10439">Chen at. al.</a>, which employs an iterative retriever and
-        a BERT-based reader, attains an exact match score of less than 10%. This dataset does not have annotated
-        intermediate steps to get to the answer and therefore all models are expected to infer the answer in a zero-shot
-        manner without using tools. Despite Raven achieving an increase in experimental accuracy compared to
-        the base model the relatively low score underscores the importance of intermediate reasoning steps and tools.
-      </p>
-      <p>
+        <p>
+          The majority of questions in <a href="https://paperswithcode.com/dataset/ott-qa">OTT-QA</a> require multi-hop
+          inference involving both tabular data and
+          unstructured text, with the information needed to answer the questions dispersed differently across these two
+          input types. The baseline model from <a href="https://arxiv.org/abs/2010.10439">Chen at. al.</a>, which
+          employs an iterative retriever and
+          a BERT-based reader, attains an exact match score of less than 10%. This dataset does not have annotated
+          intermediate steps to get to the answer and therefore all models are expected to infer the answer in a
+          zero-shot
+          manner without using tools. Despite Raven achieving an increase in experimental accuracy compared to
+          the base model the relatively low score underscores the importance of intermediate reasoning steps and tools.
+        </p>
+        <p>
 
-        <strong>Backoff.</strong> We employ a backoff mechanism when Raven produces malformed
-        expressions and fallback to the result obtained from the SFT model. This mechanism improves the results of
-        datasets that employ tools at inference time: TAT-QA (51.35% &rarr; 52.27%) and
-        Wiki-SQL (84.25% &rarr; 85.52%).
-      </p>
+          <strong>Backoff.</strong> We employ a backoff mechanism when Raven produces malformed
+          expressions and fallback to the result obtained from the SFT model. This mechanism improves the results of
+          datasets that employ tools at inference time: TAT-QA (51.35% &rarr; 52.27%) and
+          Wiki-SQL (84.25% &rarr; 85.52%).
+        </p>
 
 
 
@@ -387,45 +395,66 @@
       <h2 class="title">Analysis</h2>
       <!-- insert two figures data_scale and data_type side by side-->
       <div class="columns is-centered">
-        <div style="width: 30%;">
+        <div style="width: 50%;">
           <div class="item has-text-centered">
-            <img src="static/images/data_scale.pdf" alt="Teaser image" class="teaser-image" width="90%">
+            <img src="static/images/tat-qa_results.png" alt="Teaser image" class="teaser-image" width="90%">
           </div>
         </div>
-        <div style="width: 70%;">
+        <div style="width: 50%;">
           <div class="item has-text-centered">
-            <img src="static/images/data_type.pdf" alt="Teaser image" class="teaser-image" width="90%">
+            <img src="static/images/tat-qa_results_complexity.png" alt="Teaser image" class="teaser-image" width="90%">
           </div>
         </div>
       </div>
-      <p><strong>Effect of fine-tuning data scale.</strong> This analysis explores how <strong>FireAct</strong>
-        performances scale with the number of fine-tuning trajectories (<em>n</em> in {100, 200, 500, 1000}). GPT-3.5
-        appears very sample-efficient, requiring only 100 samples to reach an EM around 35, and the gain after 200
-        samples is marginal. On the other hand, Llama models cannot even learn the <strong>ReAct</strong> format using
-        100 or 200 samples, but non-trivial EMs "emerge" with 500 samples, and most models (except CodeLlama-13B)
-        further improve with 1,000 samples.
+      <p>
+        <strong>One model or many?.</strong> To assess the performance penalty of mixing all the datasets and training
+        one multi-tasking model, we also train a model exclusively on the TAT-QA dataset. The evaluation result
+        for this dedicated model on the TAT-QA dataset is 54.70%, which is 2.4\% higher than Raven. We
+        contend that this modest performance gain does not justify the overhead associated with maintaining separate
+        models and switching between them during inference.
+      </p>
+      <p>
+        <strong>The effects of tool augmentation.</strong> Approximately half of the questions within the TAT-QA
+        dataset are annotated with an arithmetic equation. The presence of the equation implies that the language model
+        needs to perform multi-hop reasoning to output the correct answer. This process involves the correct extraction
+        of, at a minimum, two numerical values from the context, followed by the execution of an arithmetic operation,
+        such as addition or division. This particular scenario is ideal to understand the effect of SFT and tool
+        augmentation, by comparing the performance of different models on the two categories of data from the same
+        dataset.
+      </p>
+      <p>
+        We observe that SFT models are able to accurately extract multiple data points from the context, but require
+        external tools to correctly compose the final answer from the gathered data. As shown in the above Figure
+        the base model without any fine-tuning is ill-equipped to perform multi-hop reasoning
+        achieving close to 2% accuracy (blue column) equating to ten correct answers
+        of approximately 620. Although we observe an improvement in the SFT model, the impact of using tools is evident
+        in
+        the substantial jump to 56.7% accuracy achieved by Raven. Additionally, the consistent performance of
+        the 'Information Extraction' type questions between SFT and Raven (orange column), which only
+        requires data extraction to answer the question, continuous to re-enforce this observation.
+      </p>
+      <p>
 
-      <div class="item has-text-centered">
-        <img src="static/images/traj.pdf" alt="Teaser image" class="teaser-image" width="90%">
-      </div>
-      <p><strong>Multi-method fine-tuning increases agent flexibility.</strong> Before presenting quantitative results,
-        we offer two example questions to illustrate the benefit of multi-method <strong>FireAct</strong> fine-tuning.
-        The first question (a) is simple, but the <strong>ReAct</strong>-only fine-tuned agent (a1) searched for an
-        over-complicated query, leading to distraction and a wrong answer. In contrast, an agent fine-tuned with both
-        CoT and <strong>ReAct</strong> chose to solve the task within one round, relying on confident internal
-        knowledge. The second question (b) is more challenging, and the <strong>ReAct</strong>-only fine-tuned agent
-        (b1) kept searching queries ending in "during the Libyan Civil War" without useful information. In contrast, an
-        agent fine-tuned with both Reflexion and <strong>ReAct</strong> reflected upon this problem and pivoted the
-        search strategy to change the time constraint to "during his rule," which led to the right answer. The
-        flexibility to implicitly choose methods for different problems is another key advantage of fine-tuning over
-        prompting.</p>
-      <p><strong>Multi-method fine-tuning affects different LMs differently.</strong> Despite the intuitive benefit,
-        mixing more methods does not always improve results, and the optimal mix of methods depends on the base LM. For
-        example, <strong>ReAct+CoT</strong> outperforms <strong>ReAct</strong> for GPT-3.5 and Llama-2 models, but hurts
-        for CodeLlama models. <strong>ReAct+CoT+Reflexion</strong> is the worst for CodeLlama-7/13B, but is the best for
-        CodeLlama-34B. These non-trivial results call for further studies of the interaction of base LMs and fine-tuning
-        data.</p>
-    </div>
+        The utility of augmenting language models with external tools is substantiated further through a comparative
+        analysis of experimental outcomes on two similar datasets. Addressing questions on Wiki-SQL and
+        OTT-QA requires multi-hop reasoning across diverse forms of data, spanning both structured and
+        unstructured formats. The primary difference lies in the annotation method: the Wiki-SQL dataset is
+        annotated with a data extraction script which, when executed on the structured data, yields the answer. In
+        contrast, the OTT-QA dataset lacks this intermediate derivation step. By delegating the script execution
+        to an external tool, Raven achieves an exact match accuracy of <em>85.52%</em> on Wiki-SQL and 16.03%
+        on OTT-QA, underscoring the effectiveness of fit-for-purpose external tools in this scenario.
+      </p>
+      <p>
+        <strong>Question complexity.</strong> On the TAT-QA dataset we can use the number of arithmetic
+        operators in the <em>gold</em> evaluation as a proxy for question complexity. One arithmetic operator implies
+        the
+        extraction of two numerical values from the context, two operators, three numerical values, and so on. As shown
+        in
+        the above, model performance degrades with the number of operators (x-axis) and
+        hence the numerical values required to be extracted from the context.
+      </p>
+
+
     </div>
   </section>
 
@@ -435,11 +464,11 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@misc{chen2023fireact,
-      title={FireAct: Toward Language Agent Fine-tuning}, 
-      author={Baian Chen and Chang Shu and Ehsan Shareghi and Nigel Collier and Karthik Narasimhan and Shunyu Yao},
+      <pre><code>@misc{theuma2023raven,
+      title={Equipping Language Models with Tool Use Capability for Tabular Data Analysis in Finance}, 
+      author={Adrian Theuma and Ehsan Shareghi},
       year={2023},
-      eprint={2310.05915},
+      eprint={},
       archivePrefix={arXiv},
       primaryClass={cs.CL}
 }</code></pre>
