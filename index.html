@@ -128,17 +128,23 @@
     <div class="container is-max-desktop">
       <div class="hero-body">
         <div class="item has-text-centered">
-          <img src="static/images/raven-demo.gif" alt="Raven gif animation"  width="100%">
+          <img src="static/images/raven-demo.gif" alt="Raven gif animation" width="100%">
         </div>
+        <br />
         <h2 class="subtitle has-text-centered">
           While language model fine-tuning and tool use are both popular topics, their use in specialised domains such
           as fianance remains understudied. This study initiates the exploration of numerous benefits associated with
           fine-tuning Language
-          Models (LMs) for tool use in finance. Through a series of experiments we demonstrate the feasibility of
+          Models (LMs) for tool use in finance.
+        </h2>
+        <h2 class="subtitle has-text-centered">
+
+          Through a series of experiments we demonstrate the feasibility of
           extending a small scale open foundation
           model into the financial domain. We obtain a new model,
           Raven, by
-          leveraging Llama 2 13B chat and fine-tune a mere 0.2% of
+          leveraging <a href="https://huggingface.co/meta-llama/Llama-2-13b-chat-hf">Llama 2 13B chat</a> and fine-tune
+          a mere 0.2% of
           its
           parameters.
         </h2>
@@ -148,7 +154,8 @@
           datasets we
           experimented with, Raven lifts average absolute performance by 35.2%
           compared
-          to the base model, surpassing even a significantly larger GPT-3.5 model by 9.2%!
+          to the base model, surpassing even a significantly larger <a
+            href="https://platform.openai.com/docs/models/gpt-3-5">GPT 3.5</a> model by 9.2%!
         </h2>
       </div>
     </div>
@@ -173,7 +180,8 @@
                 router</em> dynamically directs a question to either be answered internally by the LLM or externally via
               the
               right tool from the tool set. Our tool-equipped SFT model, Raven, demonstrates an improvement of
-              35.2% over the baseline, and is competitive with strong GPT-3.5 CoT and in-context learning baselines.
+              35.2% over the baseline, and is competitive with strong <a
+              href="https://platform.openai.com/docs/models/gpt-3-5">GPT 3.5</a> CoT and in-context learning baselines.
             </p>
           </div>
         </div>
@@ -192,13 +200,13 @@
         model and
         fine-tune it further using the <a href="https://huggingface.co/docs/peft/conceptual_guides/lora">LoRA</a>
         lightweight fine-tuning
-        approach. For training we use a set of financial and generic structured and unstructured open-domain datasets to
+        approach. For training we use a <a href="https://drive.google.com/file/d/1J4UqjGDZEFqRPKsug3mC-OcXkWLCSAe5">set of financial and generic structured and unstructured open-domain datasets</a> to
         obtain a tool-augmented instruction following language model for finance, which we call Raven.
       </p>
       <div class="item has-text-centered">
         <img src="static/images/raven-infeerence-pipeline.png" alt="Teaser image" class="teaser-image" width="90%">
       </div>
-      
+
       <p>
         <strong>Inference pipeline</strong>. We use different prompt templates to <em>steer</em> Raven to either produce
         the final answer or produce an intermediate result, which is subsequently interpreted by one of the external
@@ -261,14 +269,12 @@
             border-collapse: collapse;
             width: 100%;
           }
-
           th,
           td {
             border: 1px solid #dddddd;
             text-align: left;
             padding: 8px;
           }
-
           th {
             background-color: #f2f2f2;
           }
@@ -343,7 +349,6 @@
           </tbody>
         </table>
 
-
         <p><strong>Fine-tuning and using tools significantly improves performance.</strong> When compared to the base
           model Raven significantly improves the results on the <a
             href="https://paperswithcode.com/sota/sentiment-analysis-on-financial-phrasebank">PhraseBank</a>
@@ -358,17 +363,18 @@
           time. This figure is inverted when the same benchmark is evaluated on Raven that obtains a
           <em>4-fold</em>> improvement over the base model inferring the correct answer more than 85% of the time. Our
           model
-          improves on the best GPT-3.5 performance by close to 10% (absolute). All the questions in this dataset
+          improves on the best <a
+          href="https://platform.openai.com/docs/models/gpt-3-5">GPT 3.5</a> performance by close to 10% (absolute). All the questions in this dataset
           can be addressed using the lightweight database engine and involve a combination of
           data selection, ranking and arithmetic operations on structured data. This result underscores the distinct
           advantage of delegating this task to a tool rather than relying on the language model to infer the results in
           a
           zero-shot manner. Despite the results not being as strong as Raven we observe a similar pattern on the
-          GPT-3.5 evaluation in which better results are incrementally obtained when including examples in the
+          <a
+            href="https://platform.openai.com/docs/models/gpt-3-5">GPT 3.5</a> evaluation in which better results are incrementally obtained when including examples in the
           context and using tools compared to <a href="https://arxiv.org/abs/2205.11916">Zero-Shot-CoT</a>.
         </p>
         <p>
-
           We see a similar pattern on the <a href="https://paperswithcode.com/dataset/tat-qa">TAT-QA</a> benchmark with
           the tool augmented model achieving a
           <em>5-fold</em> improvement on the base model. Approximately 46% of the observations of the TAT-QA
@@ -389,7 +395,6 @@
           the base model the relatively low score underscores the importance of intermediate reasoning steps and tools.
         </p>
         <p>
-
           <strong>Backoff.</strong> We employ a backoff mechanism when Raven produces malformed
           expressions and fallback to the result obtained from the SFT model. This mechanism improves the results of
           datasets that employ tools at inference time: TAT-QA (51.35% &rarr; 52.27%) and
@@ -448,7 +453,6 @@
         requires data extraction to answer the question, continuous to re-enforce this observation.
       </p>
       <p>
-
         The utility of augmenting language models with external tools is substantiated further through a comparative
         analysis of experimental outcomes on two similar datasets. Addressing questions on Wiki-SQL and
         OTT-QA requires multi-hop reasoning across diverse forms of data, spanning both structured and
@@ -500,13 +504,15 @@
         content very challenging.
       </p>
       <p>
-        <strong>GPT-3.5 evaluation.</strong> Evaluating our benchmark with GPT-3.5 poses significant challenges,
+        <strong>GPT-3.5 evaluation.</strong> Evaluating our benchmark with <a
+        href="https://platform.openai.com/docs/models/gpt-3-5">GPT 3.5</a> poses significant challenges,
         particularly when using <a
           href="https://medium.com/@JerryCuomo/lets-think-step-by-step-advanced-reasoning-in-business-with-chain-of-thought-prompting-dd5ae8a6008#:~:text=In%20chain%2Dof%2Dthought%20prompting,bite%2Dsized%2C%20logical%20chunks.">chain-of-though</a>
         reasoning. GPT-3.5 does
         not consistently adhere to instructions for providing a concise response, such as a single word or number, which
         makes
-        exact match comparisons challenging. Additionally, we have noticed that GPT-3.5 does not generate a response
+        exact match comparisons challenging. Additionally, we have noticed that <a
+        href="https://platform.openai.com/docs/models/gpt-3-5">GPT 3.5</a> does not generate a response
         when uncertain. This is particularly evident when evaluating the PhraseBank dataset, which does not exhibit
         common sentiment negative or positive words.
       </p>
@@ -521,14 +527,15 @@
         Through a series of experiments we have demonstrated the feasibility of extending a small scale open foundation
         model into the financial domain. We obtain a new model,
         Raven, by
-        leveraging Llama 2 13B chat and use a relatively small and diverse dataset to fine-tune a mere 0.2% of
+        leveraging <a href="https://huggingface.co/meta-llama/Llama-2-13b-chat-hf">Llama 2 13B chat</a> and use a relatively small and diverse dataset to fine-tune a mere 0.2% of
         its
         parameters. Raven remarkably elevates the performance of the base model from 2% to 56.7% on the
         TAT-QA arithmetic question answering benchmark. On average, across the
         datasets we
         experimented with, Raven lifts average absolute performance by 35.2%
         compared
-        to the base model, surpassing even a significantly larger GPT-3.5 model by 9.2%. Additionally, through a
+        to the base model, surpassing even a significantly larger <a
+        href="https://platform.openai.com/docs/models/gpt-3-5">GPT 3.5</a> model by 9.2%. Additionally, through a
         comparative
         analysis of question answering datasets we demonstrate the effectiveness of augmenting language models with
         external
@@ -537,7 +544,6 @@
 
       </p>
       <p>
-
         <strong>Future work.</strong> The financial domain encompasses not only structured and unstructured data but
         also the
         pervasive presence of visual representations of data in charts. To develop a comprehensive financial language
@@ -550,7 +556,6 @@
         quantify uncertainty. <em>Is it possible for a tool-augmented model to report a measure of certainty with its
           generated result?</em> We leave multi-modality and certainty quantification for future work.
       </p>
-
     </div>
   </section>
 
