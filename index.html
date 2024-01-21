@@ -5,23 +5,29 @@
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="DESCRIPTION META TAG">
-  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG" />
-  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG" />
-  <meta property="og:url" content="URL OF THE WEBSITE" />
+  <meta name="description" content="Equipping Language Models with Tool Use Capability for Tabular Data
+  Analysis in Finance>
+  <meta property=" og:title" content="Equipping Language Models with Tool Use Capability for Tabular Data
+  Analysis in Finance" />
+  <meta property="og:description" content="Equipping Language Models with Tool Use Capability for Tabular Data
+  Analysis in Finance" />
+  <meta property="og:url" content="https://raven-lm.github.io/" />
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
   <meta property="og:image" content="static/image/your_banner_image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
 
-  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
-  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <meta name="twitter:title" content="Equipping Language Models with Tool Use Capability for Tabular Data
+  Analysis in Finance">
+  <meta name="twitter:description" content="Equipping Language Models with Tool Use Capability for Tabular Data
+  Analysis in Finance">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
   <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
   <meta name="twitter:card" content="summary_large_image">
   <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="keywords"
+    content="language models, natural language generation, specialized domains, error propagation, hallucination, reasoning across heterogeneous datasets, precision, finance, language model augmentation, external tools, supervised fine-tuning, LLaMA-2 13B Chat model, task router, task solver, question-answering datasets, financial domain, raven, baseline improvement, GPT 3.5 CoT, in-context learning. baselines">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -483,12 +489,9 @@
       <p>
         <strong>Hardware bottleneck.</strong> Our experiments were constrained with fitting our model on available
         commodity
-        hardware. We hypothesise that it would be possible to obtain better performance using the larger Llama 2 70
-        billion-parameter model and a longer context length. Experiments by~\citet{DBLP:journals/corr/abs-2307-09288}
-        demonstrated that the 70-billion-parameter model consistently achieves the highest performance across various
-        prominent natural language understanding benchmarks. Additionally, a longer context length enables
-        experimentation
-        with diverse prompts as well as alternative representations of structured data.
+        hardware. We hypothesise that it would be possible to obtain better performance using the larger <a
+          href="https://huggingface.co/meta-llama/Llama-2-70b-chat-hf">Llama 2 70
+          billion-parameter model</a> and a longer context length.
       </p>
       <p>
         <strong>Language model evaluation.</strong> Our experimental
@@ -497,7 +500,12 @@
         values, such as finance, poses a significant challenge. Mainstream NLG evaluation metrics provide a measure of
         similarity between generations which is reported in terms of surface form similarity. These measures are not
         suitable
-        for comparing numerical content. Conversely, using exact match criteria might unjustly penalise NLG models,
+        for comparing numerical content. For example the candidate and reference sentences <em>"The amount of goodwill
+          reallocated to the IOTG operating segment in 2018 was $480 <strong>million</strong>"</em>, and <em>"The amount
+          of
+          goodwill reallocated to the IOTG operating segment in 2018 was $480"</em> have a <a
+          href="https://huggingface.co/spaces/evaluate-metric/bertscore">BERTScore</a> of 99.17%!
+        Conversely, using exact match criteria might unjustly penalise NLG models,
         given that
         identical numerical values can be expressed in varying forms - such as "$4 million" and "$4,000,000," or "0.24"
         and
