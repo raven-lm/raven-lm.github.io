@@ -176,29 +176,29 @@
         <img src="static/images/raven-infeerence-pipeline.png" alt="Teaser image" class="teaser-image" width="90%">
       </div>
       <p>
-        Inspired by the success of the <strong>Alpaca</strong> instruction-tuning protocol we use the latest
-        instruction-tuned <strong>Llama 2 13B chat</strong> language model and
-        fine-tune it further using the <strong>LoRA</strong> lightweight fine-tuning
+        Inspired by the success of the <a href="https://crfm.stanford.edu/2023/03/13/alpaca.html">Alpaca</a> instruction-tuning protocol we use the latest
+        instruction-tuned <a href="https://huggingface.co/meta-llama/Llama-2-13b-chat-hf">Llama 2 13B chat</a> language model and
+        fine-tune it further using the <a href="https://huggingface.co/docs/peft/conceptual_guides/lora">LoRA</a> lightweight fine-tuning
         approach. For training we use a set of financial and generic structured and unstructured open-domain datasets to
-        obtain a tool-augmented instruction following language model for finance, which we call <strong>Raven</strong>.
+        obtain a tool-augmented instruction following language model for finance, which we call Raven.
       </p>
       <p>
-        <strong>Inference pipeline</strong>. We use different prompt templates to <em>steer</em> the tool-augmented
-        model (Raven) to either produce
+        <strong>Inference pipeline</strong>. We use different prompt templates to <em>steer</em> Raven to either produce
         the final answer or produce an intermediate result, which is subsequently interpreted by one of the external
         tools.
       </p>
       <p>
-        <strong>Task-router.</strong> At inference time we prompt <strong>Raven</strong> twice for every query.
+        <strong>Task-router.</strong> At inference time we prompt Raven twice for every query.
         Initially we
-        wrap the prompt in a specialised <em>template choice</em> prompt and expect the model to predict the best prompt
-        template to use from <em>arithmetic</em>, <em>classification</em>, <em>script</em> or <em>information
-          extraction</em>,
+        wrap the prompt in a specialised <em>'template choice'</em> prompt and expect the model to predict the best
+        prompt
+        template to use from <em>'arithmetic'</em>, <em>'classification'</em>, <em>'script'</em> or <em>'information
+          extraction'</em>,
         conditioned on the input.
       </p>
       <p>
         <strong>Task-solver.</strong> The instruction, including the input and data if applicable, are wrapped in the
-        prompt template that the model inferred and this is sent to <strong>Raven</strong> to generate the next output.
+        prompt template that the model inferred and this is sent to Raven to generate the next output.
         Depending on the selected template the <em>task router</em> then invokes a tool to fulfill the request, or
         produces the response directly.
       </p>
